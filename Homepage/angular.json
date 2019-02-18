@@ -2,5 +2,135 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "masterApp": {
+      "root": "projects/masterApp/",
+      "sourceRoot": "projects/masterApp/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/masterApp",
+            "index": "projects/masterApp/src/index.html",
+            "main": "projects/masterApp/src/main.ts",
+            "polyfills": "projects/masterApp/src/polyfills.ts",
+            "tsConfig": "projects/masterApp/tsconfig.app.json",
+            "assets": [
+              "projects/masterApp/src/favicon.ico",
+              "projects/masterApp/src/assets"
+            ],
+            "styles": [
+              "projects/masterApp/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/masterApp/src/environments/environment.ts",
+                  "with": "projects/masterApp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "masterApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "masterApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "masterApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/masterApp/src/test.ts",
+            "polyfills": "projects/masterApp/src/polyfills.ts",
+            "tsConfig": "projects/masterApp/tsconfig.spec.json",
+            "karmaConfig": "projects/masterApp/karma.conf.js",
+            "styles": [
+              "projects/masterApp/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/masterApp/src/favicon.ico",
+              "projects/masterApp/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/masterApp/tsconfig.app.json",
+              "projects/masterApp/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "masterApp-e2e": {
+      "root": "projects/masterApp-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/masterApp-e2e/protractor.conf.js",
+            "devServerTarget": "masterApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "masterApp:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/masterApp-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "masterApp"
 }
