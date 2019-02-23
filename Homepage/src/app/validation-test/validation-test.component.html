@@ -1,0 +1,45 @@
+<div>
+    <form [formGroup]="FormGroup">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                First Name:
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <input [(ngModel)]="firstName" matTooltip="{{ getErrorMessage('firstName') }}"
+                    matTooltipPosition="above" formControlName="firstName" type="text">
+            </div>
+            <div class="col-md-3 col-sm-6">
+                Last Name:
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <input [(ngModel)]="lastName" matTooltip="{{ getErrorMessage('lastName') }}" matTooltipPosition="above"
+                    formControlName="lastName" type="text">
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <button type="button" style="margin:10px" (click)="DisableFirstName()">Disable first name</button>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <button type="button" style="margin:10px" (click)="DisableFirstNameValidation()">Disable first name
+                validation </button>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <button type="button" style="margin:10px" (click)="DisableFormControl()">Disable Form Control</button>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <button type="button" style="margin:10px" (click)="DisableFormValidation()">Disable Form Validation</button>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <button type="button" style="margin:10px" (click)="EnableLTValidation()">EnableLTValidation</button>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <button type="button" style="margin:10px" (click)="DisableLTValidation()">DisableLTValidation</button>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <button type="button" style="margin:10px" (click)="Reset()">Reset</button>
+        </div>
+    </div>
+
+</div>
